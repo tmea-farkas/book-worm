@@ -1,131 +1,121 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Welcome to Read.it - the happy place for bookworms
 
-Welcome USER_NAME,
+## Introduction
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Read.it (similar pronunciation to 'reddit') is a website built in Django, using HTML, CSS, Bootstrap, Javascript and Python.
+The projects' target audience are people who love to immerse themselves in the World of books.
+This reddit-style blog is essentially a personalised, virtual library where the user can upload, summarize, review and discuss book they've read. Users can make posts, delete or edit them, write and delete comments under posts and up/downvote a post.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
 
-## Gitpod Reminders
+![Site image](image.jpg)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+To visit the deployed site on Heroku, click [here](https://www.example.com).
 
-`python3 -m http.server`
+In the following chapters, I will detail all aspects of production.
 
-A blue button should appear to click: _Make Public_,
+## Contents
+- UX Design
+  - The Strategy Plane
+    - User Stories
+  - The Scope Plane
+  - The Structure Plane
+  - The Skeleton Plane
+    - Wireframes
+  - The Surface Plane
+- Features
+  - Existing Features
+  - Future implementations
+- Technologies used
+- Deployment
+- Testing
+- Credits
 
-Another blue button should appear to click: _Open Browser_.
+# UX Design
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+## The Strategy Plane
 
-A blue button should appear to click: _Make Public_,
+Read.it is a virtual library where users can upload books they've read, create posts about them, leave comments, up/downvote on others posts, search for book-related posts and delete their own posts or comments. Graphics and design has been carefully curated to ensure a fun and engaging experience.
 
-Another blue button should appear to click: _Open Browser_.
+### User Stories
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+**As a User**
+1. 
+2. 
+3. 
+4.  
+5. 
+6. 
 
-To log into the Heroku toolbelt CLI:
+**As a Developer**
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## The Scope Plane
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+### Planned Features:
 
-### Connecting your Mongo database
+- user log in / log out
+- make a post
+- like/dislike a post
+- leave a comment
+- request admin privileges
+- light/dark mode
+- choose a genre
+- search bar
+- birthday greetings
+- private message other users
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+### Future Implementations
 
-------
+- 
+- 
 
-## Release History
+### Technologies used
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Django:
+Django==3.2
+django-allauth==0.48.0
+gunicorn==20.1.0
+dj-database-url~=0.5
+psycopg2~=2.9
 
-**June 18, 2024,** Add Mongo back into template
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+- Django was used as the main Python framework in the development of this project. 
 
-**May 28 2024:** Fix Mongo and Links installs
+- Heroku - was used as the cloud based platform to deploy and host the project
 
-**April 26 2024:** Update node version to 16
+- HTML
 
-**September 20 2023:** Update Python version to 3.9.17.
+- CSS 
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+- Bootstrap
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+- Font Awesome
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- 
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Deployment
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+**Deploying to Heroku**
+- Started by navigating to my Heroku dashboard
+- Create new app
+- Added DISABLE_COLLECTSTATIC to config.vars
+- Got my code ready for deployment by:
+  - installed gunicorn~=20.1 webserver
+  - created a Procfile in the root directory where I declared a process and added a start command
+  - changed DEBUG to False
+  - added Heroku to ALLOWED_HOSTS
+  - commited and pushed my code to GitHub
+- Connecting my GitHub Repository to the app
+- Chose manual deployment
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Testing
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+### Credits

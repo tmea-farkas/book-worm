@@ -79,9 +79,9 @@ Read.it is a virtual library where users can upload books they've read, create p
 Django:
 Django==3.2
 django-allauth==0.48.0
-gunicorn==20.1.0
-dj-database-url~=0.5
-psycopg2~=2.9
+gunicorn==20.1.0 - web dyno
+dj-database-url~=0.5 - Python package utility to connect Django to a database using a URL
+psycopg2~=2.9 - driver for intercating with PostgreSQL using Python
 
 
 - Django was used as the main Python framework in the development of this project. 

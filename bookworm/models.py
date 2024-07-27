@@ -5,6 +5,21 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 STATUS = ((0, 'Draft'), (1, 'Posted'))
 
+placeholder = 'static/images/default_image.png'
+
+class Profile(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False, related_name='profile')
+    username = models.CharField(max_length=30, blank=True, null=True)
+    bio = models.CharField(max_length=500, blank=True, null=True)
+    location = models.CharField(max_length=250, blank=True, null=True)
+    profile_picture = CloudinaryField('image', default='placeholder')
+
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
@@ -17,26 +32,3 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     exerpt = models.TextField(blank=True)
 
-#class Profile(models.Model):
- #   id = models.UUIDField(unique=True,
- #                         primary_key=True,
-  #                        editable=False,
-   #                       default=uuid.uuid4)
-   # user = models.ForeignKey(User,
-    #                         blank=False,
-     #                        null=False,
-      #                       related_name='profile',
-       #                      on_delete=models.CASCADE)
-    #profile_picture = CloudinaryField(
-     #   'image',
-      #  default=(#insert cloudinary default image)
-    #),
-     #   store='#folder where profile images are stored#' ,
-      #  allowed_formats=['jpg', 'jpeg', 'png', 'webp'],
-       # display={'width':120,
-        #         'height':180,
-         #        'format': 'png',
-          #       'crop': 'fill',
-           #      'quality': 'auto:good'},
-        #bio = models.TextField()
-    #)

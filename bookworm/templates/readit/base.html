@@ -16,14 +16,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=LXGW+WenKai+TC&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
-        
+    <!--CSS Stylesheet-->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bookworm/style.css' %}"> 
 </head>
 <body>
     <!--Header-->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">
-                <img src="/bookworm/templates/images/logo.svg" href="#">
+                <img src="/bookworm/staticfiles/images/logo.png" href="#">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -41,7 +43,7 @@
     <main>
         {% block content %}
         <!--Default content here-->
-        {% end block %}
+        {% endblock %}
     </main>
 
 <!--Footer-->

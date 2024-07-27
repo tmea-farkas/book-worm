@@ -19,7 +19,7 @@ from django.urls import path
 from bookworm import views
 
 urlpatterns = [
-    path('profile-update/', views.profile_update, name='profile_update'),
+    path('profile/update/', views.profile_update, name='profile_update'),
     path('register/', views.register, name='register'),
     path('admin/', admin.site.urls),
 ]

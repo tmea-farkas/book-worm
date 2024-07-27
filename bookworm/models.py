@@ -5,7 +5,8 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 STATUS = ((0, 'Draft'), (1, 'Posted'))
 
-placeholder = 'static/images/default_image.png'
+def def_image():
+    return 'staticfiles/images/default-image.png'
 
 class Profile(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, primary_key=True)
@@ -13,7 +14,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=30, blank=True, null=True)
     bio = models.CharField(max_length=500, blank=True, null=True)
     location = models.CharField(max_length=250, blank=True, null=True)
-    profile_picture = CloudinaryField('image', default='placeholder')
+    profile_picture = CloudinaryField('image', default=def_image)
 
 
     def __str__(self):

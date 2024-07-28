@@ -61,7 +61,7 @@ ROOT_URLCONF = 'readit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'bookworm/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

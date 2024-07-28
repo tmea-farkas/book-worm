@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ book.title }} by {{ book.author }}</h1>
+  <p>{{ book.description }}</p>
+  
+  <h2>Rate this book:</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="star-rating">
+      {% for i in "12345" %}
+        <span class="star" data-value="{{ i }}">&#9733;</span>
+      {% endfor %}
+    </div>
+    <input type="hidden" name="rating" id="rating-value" value="{{ form.rating.value|default_if_none:0 }}">
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Average Rating:</h2>
+  <p>{{ book.ratings.aggregate(Avg('rating')) }}</p>
+
+  <h2>All Ratings:</h2>
+  <ul>
+    {% for rating in book.ratings.all %}
+      <li>{{ rating.user.username }}: {{ rating.rating }} stars</li>
+    {% endfor %}
+  </ul>
+
+  <script>
+    document.querySelectorAll('.star').forEach(star => {
+      star.addEventListener('click', function() {
+        let value = this.getAttribute('data-value');
+        document.getElementById('rating-value').value = value;
+        highlightStars(value);
+      });
+      star.addEventListener('mouseover', function() {
+        highlightStars(this.getAttribute('data-value'));
+      });
+      star.addEventListener('mouseout', function() {
+        highlightStars(document.getElementById('rating-value').value);
+      });
+    });
+
+    function highlightStars(value) {
+      document.querySelectorAll('.star').forEach(star => {
+        if (star.getAttribute('data-value') <= value) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      highlightStars(document.getElementById('rating-value').value);
+    });
+  </script>
+  
+  <style>
+    .star-rating {
+      display: flex;
+      direction: row;
+      cursor: pointer;
+    }
+    .star {
+      font-size: 24px;
+      color: grey;
+    }
+    .star.selected, .star:hover, .star:hover ~ .star {
+      color: gold;
+    }
+  </style>
+{% endblock %}
+

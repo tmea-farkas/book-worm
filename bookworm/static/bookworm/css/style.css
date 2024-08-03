@@ -1,3 +1,7 @@
 body {
     background-color: brown!important;
 }
+footer {
+    color: green;
+    position: absolute;
+}

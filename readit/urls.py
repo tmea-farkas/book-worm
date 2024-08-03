@@ -16,15 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from bookworm import views
+from profiles import views as profiles
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('bookworm.urls')),
-    path('accounts/login/profiles/', include('profiles.urls')),
+    path('accounts/profile/', profiles.profile_redirect, name='user-profile'),
     path('profiles/', include('profiles.urls')),
-    #path('', include('bookworm.urls')),
     #path('register/', views.register, name='register'),
     #path('book/<int:book_id>/rate/', views.rate_book, name='rate_book'),
     #path('profile/update/', views.profile_update, name='profile_update'),

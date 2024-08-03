@@ -26,7 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if 'DEVELOPMENT' in os.environ:
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['8000-tmeafarkas-bookworm-6blllzu4iij.ws.codeinstitute-ide.net', '.herokuapp.com']
 
@@ -49,6 +52,8 @@ INSTALLED_APPS = [
     'bookworm',
     'profiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,6 +118,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -124,6 +136,24 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+#Email configuration settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+
+#Allauth config settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_PRESERVER_USERNAME_CASING = False
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'account_email'
+ACCOUNT_ADAPTER = 'profiles.adapter.BookwormAccountAdapter'
 
 
 # Static files (CSS, JavaScript, Images)

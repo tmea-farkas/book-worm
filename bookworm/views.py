@@ -7,12 +7,11 @@ from .forms import RatingForm
 # Create your views here.
 
 def home(request):
-    if request.user.is_authenticated:
-        profile = get_object_or_404(Profile, user=request.user)
-        context = {'profile': profile,}
-    else:
-        context = {}
-    return render(request, 'index.html/', context)
+    print('sup')
+    # if request.user.is_authenticated:
+    #     profile = get_object_or_404(Profile, user=request.user)
+    #     return redirect(reverse('profiles', args=[profile.id]))
+    return render(request, 'bookworm/home.html')
 
 @login_required
 def rate_book(request, book_id):

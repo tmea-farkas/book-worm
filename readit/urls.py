@@ -21,9 +21,10 @@ from bookworm import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('', include('bookworm.urls')),
     path('accounts/login/profiles/', include('profiles.urls')),
     path('profiles/', include('profiles.urls')),
-    path('', include('bookworm.urls')),
+    #path('', include('bookworm.urls')),
     #path('register/', views.register, name='register'),
     #path('book/<int:book_id>/rate/', views.rate_book, name='rate_book'),
     #path('profile/update/', views.profile_update, name='profile_update'),

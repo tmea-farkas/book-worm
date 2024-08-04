@@ -27,9 +27,11 @@ def delete_profile(request, pk):
         #to create blank profile
         user_profile = Profile(user=request.user)
         user_profile.save()
-        message.success(request, 'Your profile has been deleted!')
-    return redirect('profile', pk=profile.id)
-
+        messages.success(request, 'Your profile has been deleted!')
+        return redirect('profile', pk=user_profile.id)
+    else:
+        messages.error(request, "You're not authorised to delete this profile!")
+        return redirect('home')
 
 @login_required
 def profile_update(request):

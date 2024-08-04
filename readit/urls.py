@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('bookworm.urls')),
     path('accounts/profile/', profiles.profile_redirect, name='user-profile'),
+    path('accounts/login/profiles/profile/<str:pk>/', profiles.user_profile, name='login-profile'),
     path('profiles/', include('profiles.urls')),
     #path('register/', views.register, name='register'),
     #path('book/<int:book_id>/rate/', views.rate_book, name='rate_book'),

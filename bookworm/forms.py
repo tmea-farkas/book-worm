@@ -1,8 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile, Rating
+from .models import Book, Rating
 
 
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'description']
 
 class RatingForm(forms.ModelForm):
     class Meta:

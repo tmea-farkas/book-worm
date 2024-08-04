@@ -35,7 +35,6 @@ def delete_profile(request, pk):
 
 @login_required
 def profile_update(request):
-    print('hello')
     user = request.user
     profile = Profile.objects.get(user=user)
     # if not hasattr(user, 'profile'):

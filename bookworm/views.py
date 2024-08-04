@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, Book, Rating
+from .models import Book, Rating
 from django.contrib.auth.decorators import login_required
-from .forms import RatingForm
+from .forms import RatingForm, BookForm
 
 # Create your views here.
 
 def home(request):
-    print('sup')
-    # if request.user.is_authenticated:
-    #     profile = get_object_or_404(Profile, user=request.user)
-    #     return redirect(reverse('profiles', args=[profile.id]))
     return render(request, 'bookworm/home.html')
 
+def new_book(request, pk):
+    book = Book.objects.get(id=pk)
+    context = {'book': book}
+    return render(request, 'bookworm/add_book.html', context)
+
+#Book rating
 @login_required
 def rate_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from .models import Book, Rating
 
 
@@ -7,7 +7,10 @@ from .models import Book, Rating
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'description']
+        fields = ['title', 'author', 'description', 'cover_photo']
+
+        def __init__(self):
+            super(BookForm, self)
 
 class RatingForm(forms.ModelForm):
     class Meta:

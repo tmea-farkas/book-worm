@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% block body %}
+
+<section class="book-container own-books">
+    <h2>My Books</h2>
+    <div class="flex my-books">
+        {% if profile.get_own %}
+            {% for book in profile.get_own %}
+            {% include 'bookworm/book_display.html' %}
+            {% endfor %}
+        {% else %}
+            {% if request.user == profile.user %}
+                <p>Add a book you've read and share it with others!</p>
+            {% else %}
+                <p>{{profile.user.username}} has not added a book, yet!</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
+
+<!--Favourite books section-->
+{% if request.user == profile.user %}
+<section class="book-container favourite-books">
+    <h2>Favourite Books</h2>
+    <div class="flex book-results">
+        {% if profile.likes %}
+        {% for book in profile.likes %}
+        {% include 'bookworm/book_display.html' %}
+        {% endfor %}
+        {% else %}
+            <p>Books that you've liked will appear here.</p>
+    </div>
+</section>

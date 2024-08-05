@@ -1,17 +1,46 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book, Rating
+from .models import Book, Rating, Profile
 from django.contrib.auth.decorators import login_required
 from .forms import RatingForm, BookForm
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'bookworm/home.html')
+    if request.user.is_authenticated:
+        profile = get_object_or_404(Profile, user=request.user)
+        context = {'profile': profile}
+    else:
+        context = {}
+    return render(request, 'home.html/', context)
 
-def new_book(request, pk):
-    book = Book.objects.get(id=pk)
-    context = {'book': book}
-    return render(request, 'bookworm/add_book.html', context)
+
+@login_required
+def new_book(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    form = BookForm(request.POST)
+    context = {
+        'form': form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.owner = profile
+            book.save()
+            messages.success(request, 'Your book was added successfully!')
+    return render(request, 'add_book.html/', context)
+
+@login_required
+def deleteBook(request, pk):
+    user = get_object_or_404(Profile, user=request.user)
+    book = get_object_or_404(Book, id=pk)
+    if book.reader == user:
+        book.delete()
+        message.success(request, 'This book is now deleted!')
+        return redirect('home')
+    context = {'object': book}
+    return render(request, 'bookworm/books.html', context)
+
+
 
 #Book rating
 @login_required

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% block body %}
+
+<section class="book-container">
+    <div>
+    {% if books %}
+        {% for book in books %}
+            {% include 'bookworm/books_added.html' %}
+        {% endfor %}
+    </div>
+</section>

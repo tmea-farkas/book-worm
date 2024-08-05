@@ -1,12 +1,12 @@
 from django.db import models
 import uuid
 from profiles.models import Profile
+from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 # Create your models here.
 STATUS = ((0, 'Draft'), (1, 'Posted'))
 
-def def_image():
-    return 'staticfiles/images/default-image.png'
+def_image = "xx"
 
 
 #Post model
@@ -28,6 +28,7 @@ class Book(models.Model):
     title = models.CharField(max_length=120, blank=False, null=False)
     author = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField()
+    cover_photo = CloudinaryField('image', default=def_image)
     created_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):

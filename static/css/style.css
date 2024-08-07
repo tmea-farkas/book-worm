@@ -3,19 +3,22 @@
   font-weight: 400;
   font-style: normal;
 }
- 
-/* body{ 
-  background: linear-gradient(to top,
-  #002902,
-  #1b2d00, 
-  #302f00, 
-  #462f00, 
-  #5b2d00, 
-  #633201, 
-  #6b3701, 
-  #733c00, 
-  #6a4d00, 
-  #5a5c00, 
-  #426b00, 
-  #097826);
-} */
+.navbar-logo img{
+  max-height: 40px;
+  max-width: 40px;
+}
+body{ 
+  background: #794216; 
+}
+main {
+  flex: 1 0 auto;
+  margin-top: 50px;
+  background-color: #794216;
+}
+#footer {
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+}

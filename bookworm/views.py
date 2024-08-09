@@ -30,6 +30,24 @@ def new_book(request):
     return render(request, 'add_book.html/', context)
 
 @login_required
+def addPost(request):
+    profile - get_object_or_404(Profile, user=request.user)
+    form = PostForm(request.POST)
+    context = {
+        'form': form,
+    }
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = post.save(commit=False)
+            post.owner = profile
+            post.save()
+            messages.success(request, 'Your post was shared successfully!')
+    return render(request, 'new_post.html', context)
+
+
+
+@login_required
 def deleteBook(request, pk):
     user = get_object_or_404(Profile, user=request.user)
     book = get_object_or_404(Book, id=pk)

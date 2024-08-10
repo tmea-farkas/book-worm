@@ -1,15 +1,16 @@
-.baskervville-regular {
-  font-family: "Baskervville", serif;
-  font-weight: 400;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=LXGW+WenKai+TC&family=Unbounded:wght@200..900&display=swap');
+
+
 .navbar-logo img{
   max-height: 40px;
   max-width: 40px;
 }
 body{ 
-  background: #794216; 
+  background: #794216;
+  font-family: "Unbounded", sans-serif;
+  align-items: center;
 }
+
 main {
   flex: 1 0 auto;
   margin-top: 50px;

@@ -1,6 +1,6 @@
 from django import forms
 #from django.contrib.auth.models import User
-from .models import Book, Rating, Post
+from .models import Book, Rating
 
 
 
@@ -17,11 +17,3 @@ class RatingForm(forms.ModelForm):
         model = Rating
         fields = ['rating']
         widgets = {'rating': forms.RadioSelect(choices=[(i, i) for i in range(1, 6)]),}
-
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title', 'content']
-
-        def __init__(self):
-            super(PostForm, self)

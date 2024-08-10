@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load cloudinary %}
-{% block body %}
+
 
 <section class="account-container">
     <div>
@@ -8,6 +8,6 @@
         {% for book in books %}
             {% include 'bookworm/books_added.html' %}
         {% endfor %}
+    {% endif %}
     </div>
 </section>
-{% endblock body %}

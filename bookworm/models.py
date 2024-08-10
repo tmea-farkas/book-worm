@@ -7,21 +7,18 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, 'Draft'), (1, 'Posted'))
 
 def_image = "xx"
+Book = 'Book'
 
-
-#Post model
-class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=250, unique=True)
-    author = models.ForeignKey(#one-to-many foreign key
-        User, on_delete=models.CASCADE, related_name='bookworm_posts'
+#Comment model
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Book, on_delete=models.CASCADE, name='comments'
     )
-    content = models.TextField() # post content
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, name='commenter'
+    )
+    body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    edited_on = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    exerpt = models.TextField(blank=True)
-
 
 # The book model
 class Book(models.Model):
@@ -30,6 +27,9 @@ class Book(models.Model):
     description = models.TextField()
     cover_photo = CloudinaryField('image', default=def_image)
     created_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['created_on']
 
     def __str__(self):
         return self.title

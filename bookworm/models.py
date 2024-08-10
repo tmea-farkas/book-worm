@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 STATUS = ((0, 'Draft'), (1, 'Posted'))
 
-def_image = "xx"
+def_image = "{% url 'static/images/logo.png' %}"
 Book = 'Book'
 
 #Comment model

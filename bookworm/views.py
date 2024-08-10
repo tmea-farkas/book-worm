@@ -12,7 +12,7 @@ def home(request):
         context = {'profile': profile}
     else:
         context = {}
-    return render(request, 'home.html', context)
+    return render(request, 'bookworm/home.html', context)
 
 def top_10(request):
     if request.user.is_authenticated:

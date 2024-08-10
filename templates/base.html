@@ -27,7 +27,7 @@
 <body>
     <!--Header-->
     <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,7 +37,7 @@
                 <a class="nav-link" href="{% url 'top-10' %}">Top 10</a>
                 <a class="nav-link" href="{% url 'genres' %}">Genres</a>
                 <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                <div class="nav-item dropdown ms-auto d-flex align-items-center">
+                <div class="nav-item dropdown ms-auto d-flex align-items-end">
                   <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <img src="{% static 'images/default-image.png' %}" alt="Profile" width="30" height="30" class="rounded-circle">
                   </a>
@@ -75,12 +75,17 @@
     {% endif %}
     <main class="container p-1 p-sm-2">
         {% block body %}
-        <h1>Hello I'm trying to do something here</h1>
         <!--Default content here-->
         {% endblock body %}
     </main>
 
-{% include 'includes/footer.html' %}
+    <footer class="footer mt-auto py-3">
+      <p class="m-0 text-center text-gray">Read more: 
+          <i class="fab fa-facebook-square ms-3"></i>
+          <i class="fab fa-twitter-square ms-3"></i>
+          <i class="fab fa-instagram-square ms-3"></i>
+      </p>
+  </footer>
 <script>
   const toastElList = document.querySelectorAll('.toast')
   const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))

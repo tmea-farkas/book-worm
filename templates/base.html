@@ -74,9 +74,18 @@
     </div>
     {% endif %}
     <main class="container p-1 p-sm-2">
-        {% block body %}
+        {% block content %}
         <!--Default content here-->
-        {% endblock body %}
+        <section class="hero jumbotron jumbotron-fuid">
+          <div class="container text-center">
+            <h2>Welcome to ReadIt | The Happy Place for Bookworms</h2>
+            <a href="{% url 'account_login' %}" class="btn btn-primary custom-btn-primary">Login</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-secondary custom-btn-secondary">SignUp</a>
+            <h2>Your virtual library</h2>
+            <p class="pt-4 custom-p-base">Sign up to shelf the books you've read!</p>
+          </div>
+        </section>
+        {% endblock %}
     </main>
 
     <footer class="footer mt-auto py-3">

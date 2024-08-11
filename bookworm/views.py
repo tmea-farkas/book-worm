@@ -3,6 +3,9 @@ from .models import Book, Rating, Profile
 from django.contrib.auth.decorators import login_required
 from .forms import RatingForm, BookForm
 from django.contrib import messages
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -38,6 +41,13 @@ def contact(request):
         context = {}
     return render(request, 'contact.html', context)
 
+def viewBook(request, pk):
+    hx_url = reverse('view-book-hx', kwargs={'pk': pk})
+    context = {
+        'hx_url': hx_url
+    }
+    return render(request, 'templates/book_display.html/', context)
+
 @login_required
 def new_book(request):
     profile = get_object_or_404(Profile, user=request.user)
@@ -68,7 +78,7 @@ def deleteBook(request, pk):
 
 #Book rating
 @login_required
-def rate_book(request, book_id):
+def rateBook(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     rating = Rating.objects.filter(book=book, user=request.user).first()
 
@@ -88,3 +98,34 @@ def rate_book(request, book_id):
         'form': form,
     }
     return render(request, 'rate_book.html', context)
+
+@login_required
+def likeBook(request, pk):
+    book = get_object_or_404(Book, id=request.POST.get('book_id'))
+    profile = get_object_or_404(Profile, user=request.user)
+    liked = False
+    favourited = False
+    if book.likes.filet(id=profile.id).exists():
+        if book.favourites.filter(id=profile.id).exists():
+            book.favourites.remove(profile.id)
+            favourited = False
+        book.likes.remove(profile.id)
+        liked = False
+    else:
+        book.likes.add(profile.id)
+        liked = True
+        favourited = False
+
+    if request.htmx:
+        total_likes = book.total_likes()
+        context = {
+            'book': book,
+            'total_likes': total_likes,
+            'liked': liked,
+            'favourited': favourited,
+        }
+        headers = {
+            'HX-Trigger': 'liked',
+        }
+        return render(request, 'templates/bookworm/like_books.html/', context, headers)
+    return HttpResponseRedirect(reverse('view-book', args=[str(pk)]))

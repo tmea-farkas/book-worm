@@ -1,0 +1,31 @@
+{% if user.is_authenticated %}
+{% if request.user != book.owner.user %}
+{% if liked %}
+<form id="like-form" action="{% url 'like-book' book.pk %}" method="POST" data-hx-post="{% url 'like-book' book.pk %}" data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML" data-hx-trigger=liked>
+    {% csrf_token %}
+    <button type="submit" name="book_id" value="{{ book.pk }}" class="btn like-pill like-btn liked">
+        <i class="fa-solid fa-thumbs-up"></i>
+        <span> Liked </span>
+        <span id="total-likes">{{ total_likes }}</span>
+    </button>
+</form>
+{% else %}
+<form id="like-form" action="{% url 'like_book' book.pk %}" method="POST" data-hx-post="{% url 'like-book' book.pk %}" data-hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' data-hx-swap="outerHTML" data-hx-trigger=liked>
+    {% csrf_token %}
+    <button type="submit" name="book_id" value="{{ book.pk }}" class="btn like-pill like-btn liked">
+        <i class="fa-regular fa-thumbs-up"></i>
+        <span> Like </span>
+        <span id="total-likes">{{ total_likes }}</span>
+    </button>
+</form>
+{% endif %}
+{% else %}
+<span id="total-likes" class="like-pill">
+    <i class="fa-regular fa-thumbs-up"></i> {{ total_likes }}
+</span>
+{% endif %}
+{% else %}
+<span id="total-likes" class="like-pill">
+    <i class="fa-regular fa-thumbs-up"></i> {{ total_likes }}
+</span>
+{% endif %}

@@ -3,7 +3,7 @@
 {% load cloudinary %}
 
 {% block content %}
-<div class="book-display">
+<div class="book-display shadow-lg">
     <div class="container mt-3">
         <div class="card">
             <span class="card-img-top">{% cloudinary book.cover_photo alt=book.title %}</span>
@@ -13,6 +13,7 @@
               <p class="card-text">{{ book.description }}</p>
             </div>
           </div>
+          <br>
     </div>
 </div>
 {% endblock %}

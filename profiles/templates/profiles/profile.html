@@ -3,7 +3,7 @@
 {% block content %}
 <section class="profile-container container-fluid text-center">
     <h2>{{profile.user.username}}'s Profile</h2>
-    <span class="image-container">{% cloudinary profile.image alt=profile.user.username %}</span>
+    <span class="image-container">{% cloudinary profile.profile_picture alt=profile.user.username %}</span>
     {% if request.user == profile.user %}
     <br>
     <p>Bio: {{profile.bio}}</p>

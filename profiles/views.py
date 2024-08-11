@@ -5,19 +5,25 @@ from .forms import ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 # Create your views here.
 
 def user_profile(request, pk):
-    profile = Profile.objects.get(id=pk)
-    context = {'profile': profile}
+    user = User.objects.get(id=pk)
+    profile = Profile.objects.get(user=user)
+    own_profile = True if request.user == user else False
+    context = {
+        'profile': profile,
+        'own_profile': own_profile
+    }
     return render(request, 'profiles/profile.html', context)
 
 def profile_redirect(request):
     user = request.user
     profile = Profile.objects.get(user=user)
-    return redirect('profile', pk=profile.id)
+    return redirect('profile', pk=user.id)
 
 @login_required
 def delete_profile(request, pk):

@@ -27,12 +27,19 @@ class Book(models.Model):
     description = models.TextField()
     cover_photo = CloudinaryField('image', default=def_image)
     created_on = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(Profile, related_name='book_likes')
 
     class Meta:
         ordering = ['created_on']
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
+
+    def get_likes(self):
+        return self.likes_set.all()
 
 # Book rating model
 class Rating(models.Model):

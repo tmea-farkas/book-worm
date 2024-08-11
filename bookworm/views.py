@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.db.models import Count
 
 # Create your views here.
 
@@ -18,11 +19,19 @@ def home(request):
     return render(request, 'bookworm/home.html', context)
 
 def top_10(request):
+    book_list = Book.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[:10]
+    for book in book_list:
+        print(book)
     if request.user.is_authenticated:
         profile = get_object_or_404(Profile, user=request.user)
-        context = {'profile': profile}
+        context = {
+            'profile': profile,
+            'books': book_list,
+        }
     else:
-        context = {}
+        context = {
+            'books': book_list,
+        }
     return render(request, 'top-10.html', context)
 
 def genres(request):
@@ -42,11 +51,11 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 def viewBook(request, pk):
-    hx_url = reverse('view-book-hx', kwargs={'pk': pk})
+    book = get_object_or_404(Book, id=pk)
     context = {
-        'hx_url': hx_url
+        'book': book
     }
-    return render(request, 'templates/book_display.html/', context)
+    return render(request, 'bookworm/book_display.html/', context)
 
 @login_required
 def new_book(request):
@@ -105,7 +114,7 @@ def likeBook(request, pk):
     profile = get_object_or_404(Profile, user=request.user)
     liked = False
     favourited = False
-    if book.likes.filet(id=profile.id).exists():
+    if book.likes.filter(id=profile.id).exists():
         if book.favourites.filter(id=profile.id).exists():
             book.favourites.remove(profile.id)
             favourited = False

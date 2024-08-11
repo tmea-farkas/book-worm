@@ -43,12 +43,13 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                       {% if user.is_authenticated %}
-                          <li><a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a></li>
+                          <li><a class="dropdown-item" href="{% url 'profile' user.profile.id %}">Profile</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                       {% else %}
-                          <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                          <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                          <li><a class="dropdown-item" href="{% url 'account_login' %}">Log in</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign up</a></li>
                       {% endif %}
                   </ul>
               </div>
@@ -80,7 +81,7 @@
           <div class="container text-center">
             <h2>Welcome to ReadIt | The Happy Place for Bookworms</h2>
             <a href="{% url 'account_login' %}" class="btn btn-primary custom-btn-primary">Login</a>
-            <a href="{% url 'account_signup' %}" class="btn btn-secondary custom-btn-secondary">SignUp</a>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary custom-btn-primary">SignUp</a>
             <h2>Your virtual library</h2>
             <p class="pt-4 custom-p-base">Sign up to shelf the books you've read!</p>
           </div>

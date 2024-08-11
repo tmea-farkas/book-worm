@@ -6,7 +6,6 @@
   max-width: 40px;
 }
 body{ 
-  background: #794216;
   font-family: "Unbounded", sans-serif;
   align-items: center;
   display: flex;
@@ -51,7 +50,30 @@ main {
   -10px -10px -10px white, inset;
   border-radius: 10px;
 }
+.profile-container {
+  backdrop-filter: blur(100px);
+  background-color: peachpuff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .logo {
   max-width: 60%;
   max-height: 30%;
+}
+
+.btn-primary {
+  text-decoration: none;
+  color: unset;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.5), -3px -3px rgba(0, 0, 0, 0.9) inset;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: unset;
+  border-color: unset;
+  margin: 10px;
 }

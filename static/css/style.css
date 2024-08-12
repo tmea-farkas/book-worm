@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=LXGW+WenKai+TC&family=Unbounded:wght@200..900&display=swap');
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-.navbar-logo img{
-  max-height: 40px;
-  max-width: 40px;
+.bg-light{
+  background-color: unset;
+}
+
+.offcanvas.offcanvas-end{
+  width: 100px;
+  background-color:bisque;
+  font-weight: bolder;
+  opacity: 70%;
 }
 body{ 
   font-family: "Unbounded", sans-serif;
@@ -15,6 +26,8 @@ body{
   flex-direction: column;
   flex-wrap: wrap;
   background:url("../images/background-image.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 main {
@@ -99,4 +112,13 @@ main {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+.image-container img{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 }

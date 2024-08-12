@@ -16,7 +16,7 @@ def user_profile(request, pk):
     own_profile = True if request.user == user else False
     context = {
         'profile': profile,
-        'own_profile': own_profile
+        'own_profile': own_profile,
     }
     return render(request, 'profiles/profile.html', context)
 
@@ -54,7 +54,7 @@ def profile_update(request):
                 form.user = user
                 form.save()
                 messages.success(request, 'Profile update successful!')
-                return redirect('profile', pk=profile.id)
+                return redirect('profile', pk=user.id)
             else:
                 messages.error(request, 'Failed to update profile. Please ensure the form was filled out correctly.')
                 return redirect('home')

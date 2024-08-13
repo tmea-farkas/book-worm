@@ -6,12 +6,16 @@
   box-sizing: border-box;
 }
 
-.bg-light{
-  background-color: unset;
+html, body {
+  height: 100%;
 }
 
-.offcanvas.offcanvas-end{
-  width: 100px;
+.bg-light{
+  background-color: unset !important;
+}
+
+.offcanvas.offcanvas-start{
+  width: 120px;
   background-color:bisque;
   font-weight: bolder;
   opacity: 70%;
@@ -33,8 +37,8 @@ body{
 main {
   flex: 1 0 auto;
   margin: 30px 30px;
-  backdrop-filter: blur(100px);
-  background-color: #794216;
+  backdrop-filter: blur(10px);
+  background-color: #db8c4b transparent;
 }
 .footer {
   text-align: center;

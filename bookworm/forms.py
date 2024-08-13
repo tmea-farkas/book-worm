@@ -1,14 +1,19 @@
 from django import forms
 #from django.contrib.auth.models import User
-from .models import Book, Rating
+from .models import Book, Rating, Genre
 
 
 
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'description', 'cover_photo']
-
+        fields = ['title', 'author', 'genre', 'description', 'cover_photo']
+        genre = forms.ModelChoiceField(
+            queryset=Genre.objects.all(),
+            widget=forms.Select,
+            empty_label="Select a Genre"
+            )
+        
         def __init__(self):
             super(BookForm, self)
 

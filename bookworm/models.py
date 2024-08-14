@@ -59,7 +59,7 @@ class Rating(models.Model):
 
 # Genre model
 class Genre(models.Model):
-    genre = models.CharField(
+    name = models.CharField(
         max_length=100,
         verbose_name='genre',
         help_text="Enter the books' genre.")

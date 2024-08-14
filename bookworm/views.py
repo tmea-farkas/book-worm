@@ -21,7 +21,7 @@ def home(request):
 def top_10(request):
     book_list = Book.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[:10]
     for book in book_list:
-        print(book)
+        print(book.id)
     if request.user.is_authenticated:
         profile = get_object_or_404(Profile, user=request.user)
         context = {

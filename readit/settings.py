@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #     DEBUG = True
 # else:
 #     DEBUG = False
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['8000-tmeafarkas-bookworm-6blllzu4iij.ws.codeinstitute-ide.net', '.herokuapp.com']
 
 

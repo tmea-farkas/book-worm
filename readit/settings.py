@@ -30,8 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #     DEBUG = True
 # else:
 #     DEBUG = False
-DEBUG = False
-ALLOWED_HOSTS = ['8000-tmeafarkas-bookworm-6blllzu4iij.ws.codeinstitute-ide.net', '.herokuapp.com']
+DEBUG = True
+ALLOWED_HOSTS = ['8000-tmeafarkas-bookworm-6blllzu4iij.ws.codeinstitute-ide.net', '.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition

@@ -10,6 +10,7 @@ from django.db.models import Count
 
 # Create your views here.
 
+
 def home(request):
     if request.user.is_authenticated:
         profile = get_object_or_404(Profile, user=request.user)
@@ -17,6 +18,7 @@ def home(request):
     else:
         context = {}
     return render(request, 'bookworm/home.html', context)
+
 
 def top_10(request):
     book_list = Book.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[:10]
@@ -34,6 +36,7 @@ def top_10(request):
         }
     return render(request, 'top-10.html', context)
 
+
 def genres(request):
     if request.user.is_authenticated:
         profile = get_object_or_404(Profile, user=request.user)
@@ -41,6 +44,7 @@ def genres(request):
     else:
         context = {}
     return render(request, 'genres.html', context)
+
 
 def contact(request):
     if request.user.is_authenticated:
@@ -50,12 +54,17 @@ def contact(request):
         context = {}
     return render(request, 'contact.html', context)
 
+
 def viewBook(request, pk):
     book = get_object_or_404(Book, id=pk)
     context = {
         'book': book
     }
+    if request.user.is_authenticated:
+        profile = get_object_or_404(Profile, user=request.user)
+        context.update({'profile': profile})
     return render(request, 'bookworm/book_display.html/', context)
+
 
 @login_required
 def new_book(request):
@@ -80,12 +89,14 @@ def deleteBook(request, pk):
     book = get_object_or_404(Book, id=pk)
     if book.owner == user:
         book.delete()
-        message.success(request, 'This book is now deleted!')
+        messages.success(request, 'This book is now deleted!')
         return redirect('home')
     context = {'object': book}
     return render(request, 'bookworm/books.html', context)
 
-#Book rating
+# Book rating
+
+
 @login_required
 def rateBook(request, book_id):
     book = get_object_or_404(Book, id=book_id)
@@ -107,6 +118,7 @@ def rateBook(request, book_id):
         'form': form,
     }
     return render(request, 'rate_book.html', context)
+
 
 @login_required
 def likeBook(request, pk):
@@ -136,5 +148,6 @@ def likeBook(request, pk):
         headers = {
             'HX-Trigger': 'liked',
         }
-        return render(request, 'templates/bookworm/like_books.html/', context, headers)
+        return render(request, 
+                      'templates/bookworm/like_books.html/', context, headers)
     return HttpResponseRedirect(reverse('view-book', args=[str(pk)]))

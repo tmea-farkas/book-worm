@@ -11,8 +11,8 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def user_profile(request, pk):
-    user = User.objects.get(id=pk)
-    profile = Profile.objects.get(user=user)
+    profile = Profile.objects.get(id=pk)
+    user = profile.user
     own_profile = True if request.user == user else False
     context = {
         'profile': profile,

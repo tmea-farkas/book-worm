@@ -55,7 +55,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                   {% if user.is_authenticated %}
-                  <li><a class="dropdown-item" href="{% url 'profile' user.id %}">Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'profile' profile.id %}">Profile</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                   {% else %}
